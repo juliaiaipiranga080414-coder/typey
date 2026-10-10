@@ -1,0 +1,152 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #000000;
+  --paper: #fdf8f0;
+  --pink: #ffb6d9;
+  --gum: #ff6fb5;
+  --cream: #fff4a3;
+  --mint: #b4e7ce;
+  --lav: #c8b6ff;
+
+  /* jagged torn-paper silhouette, reused for the black outline + the paper fill */
+  --torn: polygon(
+    0% 1.4%, 1.5% 0.4%, 3% 1.6%, 4.5% 0.5%, 6% 1.3%, 7.5% 0.6%, 9% 1.7%,
+    10.5% 0.4%, 12% 1.5%, 13.5% 0.7%, 15% 1.4%, 16.5% 0.5%, 18% 1.6%,
+    19.5% 0.4%, 21% 1.3%, 22.5% 0.6%, 24% 1.7%, 25.5% 0.5%, 27% 1.4%,
+    28.5% 0.7%, 30% 1.5%, 31.5% 0.5%, 33% 1.6%, 34.5% 0.4%, 36% 1.4%,
+    37.5% 0.6%, 39% 1.7%, 40.5% 0.5%, 42% 1.4%, 43.5% 0.7%, 45% 1.5%,
+    46.5% 0.4%, 48% 1.6%, 49.5% 0.5%, 51% 1.4%, 52.5% 0.6%, 54% 1.7%,
+    55.5% 0.5%, 57% 1.4%, 58.5% 0.7%, 60% 1.5%, 61.5% 0.4%, 63% 1.6%,
+    64.5% 0.5%, 66% 1.4%, 67.5% 0.6%, 69% 1.7%, 70.5% 0.5%, 72% 1.4%,
+    73.5% 0.7%, 75% 1.5%, 76.5% 0.4%, 78% 1.6%, 79.5% 0.5%, 81% 1.4%,
+    82.5% 0.6%, 84% 1.7%, 85.5% 0.5%, 87% 1.4%, 88.5% 0.7%, 90% 1.5%,
+    91.5% 0.4%, 93% 1.6%, 94.5% 0.5%, 96% 1.4%, 97.5% 0.6%, 99% 1.5%, 100% 1%,
+    99.3% 6%, 99.7% 16%, 99.2% 28%, 99.8% 40%, 99.3% 52%, 99.7% 64%,
+    99.2% 76%, 99.8% 88%, 99.4% 96%,
+    99% 98.6%, 97.5% 99.6%, 96% 98.4%, 94.5% 99.5%, 93% 98.6%, 91.5% 99.4%,
+    90% 98.5%, 88.5% 99.6%, 87% 98.3%, 85.5% 99.4%, 84% 98.6%, 82.5% 99.5%,
+    81% 98.4%, 79.5% 99.6%, 78% 98.5%, 76.5% 99.4%, 75% 98.5%, 73.5% 99.6%,
+    72% 98.4%, 70.5% 99.5%, 69% 98.6%, 67.5% 99.4%, 66% 98.5%, 64.5% 99.6%,
+    63% 98.4%, 61.5% 99.5%, 60% 98.6%, 58.5% 99.4%, 57% 98.5%, 55.5% 99.6%,
+    54% 98.4%, 52.5% 99.5%, 51% 98.6%, 49.5% 99.4%, 48% 98.5%, 46.5% 99.6%,
+    45% 98.4%, 43.5% 99.5%, 42% 98.6%, 40.5% 99.4%, 39% 98.5%, 37.5% 99.6%,
+    36% 98.4%, 34.5% 99.5%, 33% 98.6%, 31.5% 99.4%, 30% 98.5%, 28.5% 99.6%,
+    27% 98.4%, 25.5% 99.5%, 24% 98.6%, 22.5% 99.4%, 21% 98.5%, 19.5% 99.6%,
+    18% 98.4%, 16.5% 99.5%, 15% 98.6%, 13.5% 99.4%, 12% 98.5%, 10.5% 99.6%,
+    9% 98.4%, 7.5% 99.5%, 6% 98.6%, 4.5% 99.4%, 3% 98.5%, 1.5% 99.6%, 0% 98.5%,
+    0.6% 88%, 0.2% 76%, 0.8% 64%, 0.3% 52%, 0.7% 40%, 0.2% 28%, 0.8% 16%, 0.5% 6%
+  );
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Patrick Hand", "Comic Sans MS", cursive;
+  color: #141414;
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(rgba(253, 248, 240, 0.62), rgba(253, 248, 240, 0.62)),
+    url("./assets/y2k-bg.jpg");
+  background-repeat: repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: auto, 1100px;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: var(--gum);
+  color: #000;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-track {
+  background: var(--paper);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--gum);
+  border: 3px solid #000;
+  border-radius: 9999px;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 3px dashed #000;
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+.font-display {
+  font-family: "Fredoka", "Trebuchet MS", sans-serif;
+}
+
+@layer components {
+  /* chunky scrapbook card: 3px border + hard offset shadow + tilt via --tilt */
+  .card-brutal {
+    border: 3px solid #000;
+    border-radius: 1.25rem;
+    box-shadow: 6px 6px 0 #000;
+    transform: rotate(var(--tilt, 0deg));
+    transition: transform 0.15s ease, box-shadow 0.15s ease,
+      background-color 0.15s ease;
+  }
+
+  .hoverable:hover {
+    transform: rotate(var(--tilt, 0deg)) scale(1.02);
+  }
+
+  /* pill buttons with press-down physics */
+  .btn-brutal {
+    border: 3px solid #000;
+    border-radius: 9999px;
+    box-shadow: 4px 4px 0 #000;
+    transform: rotate(var(--tilt, 0deg));
+    transition: transform 0.15s ease, box-shadow 0.15s ease,
+      background-color 0.15s ease;
+  }
+
+  .btn-brutal:hover {
+    background-color: var(--hover-bg, var(--pink));
+    transform: rotate(var(--tilt, 0deg)) scale(1.02);
+  }
+
+  .btn-brutal:active {
+    transform: translate(4px, 4px);
+    box-shadow: 0 0 0 #000;
+  }
+
+  .pill {
+    border: 3px solid #000;
+    border-radius: 9999px;
+    box-shadow: 3px 3px 0 #000;
+  }
+
+  /* washi-tape strip for cards */
+  .tape {
+    width: 92px;
+    height: 26px;
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    box-shadow: 1px 2px 0 rgba(0, 0, 0, 0.2);
+    opacity: 0.92;
+  }
+
+  /* torn-paper stack: black silhouette underneath = the outline.
+     drop-shadow filter follows the clipped shape, so the shadow hugs the tear. */
+  .torn-outline {
+    clip-path: var(--torn);
+    background: #000;
+    padding: 4px;
+    filter: drop-shadow(7px 7px 0 rgba(0, 0, 0, 1));
+  }
+
+  .torn-paper {
+    clip-path: var(--torn);
+    background: var(--paper);
+  }
+}
